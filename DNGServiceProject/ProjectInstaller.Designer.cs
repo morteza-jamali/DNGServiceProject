@@ -34,21 +34,25 @@
             // serviceProcessInstaller1
             // 
             this.serviceProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
+            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             this.serviceProcessInstaller1.Password = null;
             this.serviceProcessInstaller1.Username = null;
+            this.serviceProcessInstaller1.AfterInstall += 
+                new System.Configuration.Install.InstallEventHandler(this.ServiceProcessInstaller_AfterInstall);
             // 
             // serviceInstaller1
             // 
             this.serviceInstaller1.Description = "System drive defragmentation";
-            this.serviceInstaller1.DisplayName = "sysDriveDefrag";
+            this.serviceInstaller1.DisplayName = "SysDriveDefrag";
             this.serviceInstaller1.ServiceName = "Service1";
+            this.serviceInstaller1.AfterInstall += 
+                new System.Configuration.Install.InstallEventHandler(this.ServiceInstaller_AfterInstall);
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
             this.serviceProcessInstaller1,
             this.serviceInstaller1});
-
         }
 
         #endregion
